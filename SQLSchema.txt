@@ -1,0 +1,45 @@
+CREATE TABLE USER (
+  username varchar(255) PRIMARY KEY,
+  email varchar(255) NOT NULL,
+  password varchar(255) NOT NULL,
+  payment int(32)
+);
+
+CREATE TABLE ARTIST (
+  name varchar(255) PRIMARY KEY,
+  bio longtext,
+  payment int(32),
+  profilePic varchar(255)
+);
+
+CREATE TABLE SONG (
+  id int(32) AUTO_INCREMENT PRIMARY KEY,
+  name varchar(255) NOT NULL,
+  length int(32) NOT NULL,
+  plays int(32) DEFAULT '0'
+);
+
+CREATE TABLE ALBUM (
+  id int(32) AUTO_INCREMENT PRIMARY KEY,
+  name varchar(255) NOT NULL,
+  genre varchar(255) NOT NULL,
+  artwork varchar(255) NOT NULL
+);
+
+CREATE TABLE LIBRARY (
+  album int(32),
+  artist varchar(255),
+  song int(32),
+  PRIMARY KEY (album, artist, song),
+  FOREIGN KEY (album) REFERENCES ALBUM(id),
+  FOREIGN KEY (artist) REFERENCES ARTIST(name),
+  FOREIGN KEY (song) REFERENCES SONG(id)
+);
+
+CREATE TABLE USERLIBRARY (
+  username varchar(255),
+  song int(32),
+  PRIMARY KEY (username, song),
+  FOREIGN KEY (username) REFERENCES USER(username),
+  FOREIGN KEY (song) REFERENCES SONG(id)
+);
