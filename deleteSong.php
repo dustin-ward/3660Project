@@ -7,10 +7,10 @@
 
  $conn = new mysqli("vconroy.cs.uleth.ca",ward3660,qzegwe,ward3660);
 
- $sql = "SELECT name, id FROM SONG";
+ $sql = "SELECT id, name FROM SONG";
  $result = $conn->query($sql);
  if($result->num_rows != 0) {
-    echo "Song Name: <select name=\"name\">";
+    echo "Song Name: <select name=\"id\">";
 
     while($val = $result->fetch_assoc()) {
       echo "<option value='$val[id]'>$val[name]</option>";
