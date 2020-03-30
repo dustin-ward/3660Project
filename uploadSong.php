@@ -1,6 +1,12 @@
 <?php
-$conn = new mysqli("vconroy.cs.uleth.ca",ward3660,qzegwe,ward3660);
-if($mysqli->connect_errno) {
+// Database connection parameters
+$DB_HOST = 'vconroy.cs.uleth.ca';
+$DB_USER = 'ward3660';
+$DB_PASS = 'qzegwe'; // blank or new_password
+$DB_NAME = 'ward3660'; // database instance name
+
+$conn = new mysqli($DB_HOST,$DB_USER,$DB_PASS,$DB_NAME);
+if($conn->connect_errno) {
    echo "Connection Issue!";
    exit;
 }
