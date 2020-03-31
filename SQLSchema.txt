@@ -22,8 +22,8 @@ CREATE TABLE SONG (
 CREATE TABLE ALBUM (
   id int(32) AUTO_INCREMENT PRIMARY KEY,
   name varchar(255) NOT NULL,
-  genre varchar(255) NOT NULL,
-  artwork varchar(255) NOT NULL
+  genre varchar(255),
+  artwork longblob NOT NULL
 );
 
 CREATE TABLE LIBRARY (
