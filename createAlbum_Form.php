@@ -21,7 +21,6 @@ if($conn->query($sql)) {
         $songID = $conn->insert_id;
         $sql = "INSERT INTO LIBRARY VALUES ('$albumID', 'TestArtist', '$songID');";
         $conn->query($sql);
-        echo "Inserting $albumID, $songID";
     }
 }
 else {
