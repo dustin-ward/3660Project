@@ -8,9 +8,9 @@ $DB_NAME = 'ward3660'; // database instance name
 
 $conn = new mysqli($DB_HOST,$DB_USER,$DB_PASS,$DB_NAME);
 $sql = "INSERT INTO ALBUM (name, genre, artwork) VALUES ('$_POST[albumName]', '$_POST[albumGenre]', '$_POST[albumArtwork]');";
-$albumID = $conn->insert_id;
 
 if($conn->query($sql)) {
+    $albumID = $conn->insert_id;
     $num = $_POST['albumNumSongs'];
     for($i = 0; $i < $num; $i++) {
         $name = $_POST['songName'][$i];
@@ -19,8 +19,9 @@ if($conn->query($sql)) {
         $conn->query($sql);
 
         $songID = $conn->insert_id;
-        $sql = "INSERT INTO LIBRARY (album, artist, song) VALUES ('$albumID', '$songID', 'TestArtist');";
+        $sql = "INSERT INTO LIBRARY VALUES ('$albumID', 'TestArtist', '$songID');";
         $conn->query($sql);
+        echo "Inserting $albumID, $songID";
     }
 }
 else {

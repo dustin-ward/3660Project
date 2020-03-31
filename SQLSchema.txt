@@ -9,7 +9,7 @@ CREATE TABLE ARTIST (
   name varchar(255) PRIMARY KEY,
   bio longtext,
   payment int(32),
-  profilePic varchar(255)
+  profilePic longblob
 );
 
 CREATE TABLE SONG (
@@ -23,7 +23,7 @@ CREATE TABLE ALBUM (
   id int(32) AUTO_INCREMENT PRIMARY KEY,
   name varchar(255) NOT NULL,
   genre varchar(255),
-  artwork longblob NOT NULL
+  artwork longblob
 );
 
 CREATE TABLE LIBRARY (
