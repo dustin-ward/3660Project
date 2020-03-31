@@ -1,7 +1,9 @@
 <?php
 require_once "config.php";
 
-$sql = "INSERT INTO ARTIST (name, bio, profilePic) VALUES ('$_POST[name]','$_POST[bio]', '$_POST[profilePic]')";
+$password = hash('sha512',$_POST['password']);
+
+$sql = "INSERT INTO ARTIST (name, email, password, bio, profilePic) VALUES ('$_POST[name]', '$_POST[email]', '$password', '$_POST[bio]', '$_POST[profilePic]')";
 if($conn->query($sql)) {
 	echo "<h3> Account Created</h3>";
 }
