@@ -27,6 +27,7 @@
         echo "<td>$artist[username]</td>";
         echo "<td>$album[name]</td>";
         echo "<td>$album[genre]</td>";
+        echo "<td><a href='addSong.php?id=$lib[song]'>Add Song</a></td>";
         echo "</tr>";
 
         echo "</table>";

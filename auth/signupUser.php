@@ -12,5 +12,5 @@ else {
     echo "<p>MySQL error code $err </p>";
 }
 
-echo "<a href=\"../index.html\">Return</a> to Home Page.";
+echo "<a href=\"../index.php\">Return</a> to Home Page.";
 ?>

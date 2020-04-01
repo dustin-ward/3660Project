@@ -27,7 +27,15 @@ $stmt->close();
     </head>
     <body>
         <h1>Account Information</h1>
-        <?=$profilePic?>
+        <?php 
+        echo $profilePic;
+        if($_SESSION['artist']) {
+            echo "<p>ARTIST ACCOUNT</p>";
+        }
+        else {
+            echo "<p>USER ACCOUNT</p>";
+        }
+        ?>
         <p><?=$_SESSION['username']?></p>
         <p><?=$_SESSION['email']?></p>
         <p>Account Created On: <?=$createdAt?></p>

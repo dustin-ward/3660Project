@@ -12,7 +12,7 @@ require_once "config.php";
     <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
     <h2> Links </h2>
     <ul>
-      <li><a href="library.php">View the Song Library</a></li>
+      <li><a href="library.php">View the Global Library</a></li>
       <?php
       if(isset($_SESSION['loggedin'])) {
         echo "<li><a href='myAccount.php'>My Account</a></li>";
@@ -20,7 +20,7 @@ require_once "config.php";
           echo "<li><a href='createAlbum.html'>Create an Album</a></li>";
         }
         else {
-
+          echo "<li><a href='userLibrary.php'>View Your Library</a></li>";
         }
         echo "<li><a href='logout.php'>Logout</a></li>";
       }

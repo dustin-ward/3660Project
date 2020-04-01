@@ -16,7 +16,7 @@ if ($stmt = $conn->prepare('SELECT id, password, username FROM USER WHERE email 
             $_SESSION['email'] = $_POST['email'];
             $_SESSION['username'] = $username;
             $_SESSION['id'] = $id;
-            echo 'Welcome ' . $_SESSION['name'] . '!';
+            echo 'Welcome ' . $_SESSION['username'] . '!';
             echo "<a href='../index.php'>Return</a> to Home Page.";
         } else {
             echo 'Incorrect password!';
