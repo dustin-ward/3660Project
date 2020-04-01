@@ -1,5 +1,6 @@
 CREATE TABLE USER (
-  username varchar(255) PRIMARY KEY,
+  id int(32) AUTO_INCREMENT PRIMARY KEY,
+  username varchar(255) NOT NULL,
   email varchar(255) NOT NULL,
   password varchar(255) NOT NULL,
   createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP(),
@@ -7,7 +8,8 @@ CREATE TABLE USER (
 );
 
 CREATE TABLE ARTIST (
-  name varchar(255) PRIMARY KEY,
+  id int(32) AUTO_INCREMENT PRIMARY KEY,
+  username varchar(255) NOT NULL,
   email varchar(255) NOT NULL,
   password varchar(255) NOT NULL,
   bio longtext,
@@ -31,18 +33,18 @@ CREATE TABLE ALBUM (
 
 CREATE TABLE LIBRARY (
   album int(32),
-  artist varchar(255),
+  artist int(32),
   song int(32),
   PRIMARY KEY (album, artist, song),
   FOREIGN KEY (album) REFERENCES ALBUM(id),
-  FOREIGN KEY (artist) REFERENCES ARTIST(name),
+  FOREIGN KEY (artist) REFERENCES ARTIST(id),
   FOREIGN KEY (song) REFERENCES SONG(id)
 );
 
 CREATE TABLE USERLIBRARY (
-  username varchar(255),
+  user int(32),
   song int(32),
-  PRIMARY KEY (username, song),
-  FOREIGN KEY (username) REFERENCES USER(username),
+  PRIMARY KEY (user, song),
+  FOREIGN KEY (user) REFERENCES USER(id),
   FOREIGN KEY (song) REFERENCES SONG(id)
 );

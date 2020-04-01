@@ -1,6 +1,9 @@
 <?php
-
 require_once "config.php";
+if (!isset($_SESSION['loggedin'])) {
+	header('Location: login.php');
+	exit;
+}
 
 $sql = "INSERT INTO ALBUM (name, genre, artwork) VALUES ('$_POST[albumName]', '$_POST[albumGenre]', '$_POST[albumArtwork]');";
 
@@ -14,7 +17,7 @@ if($conn->query($sql)) {
         $conn->query($sql);
 
         $songID = $conn->insert_id;
-        $sql = "INSERT INTO LIBRARY VALUES ('$albumID', 'TestArtist', '$songID');";
+        $sql = "INSERT INTO LIBRARY VALUES ('$albumID', '$_SESSION[id]', '$songID');";
         $conn->query($sql);
     }
 }
@@ -23,5 +26,5 @@ else {
     echo "Album not created. Error Code $err";
 }
 
-echo "<a href=\"index.html\">Return</a> to Home Page.";
+echo "<a href=\"index.php\">Return</a> to Home Page.";
 ?>

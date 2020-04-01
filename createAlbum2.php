@@ -1,3 +1,10 @@
+<?php
+require_once "config.php";
+if (!isset($_SESSION['loggedin'])) {
+	header('Location: login.php');
+	exit;
+}
+?>
 <html>
 <head>
     <title>Add songs to Album</title>

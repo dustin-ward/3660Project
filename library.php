@@ -17,15 +17,16 @@
         $song = $songResult->fetch_assoc();
         $albumResult = $conn->query("SELECT * FROM ALBUM WHERE id='$lib[album]'");
         $album = $albumResult->fetch_assoc();
+        $artistResult = $conn->query("SELECT * FROM ARTIST WHERE id='$lib[artist]'");
+        $artist = $artistResult->fetch_assoc();
         echo "<table border=1>";
 
         echo "<tr>";
         echo "<td>$song[name]</td>";
         echo "<td>$song[length]</td>";
-        echo "<td>$lib[artist]</td>";
+        echo "<td>$artist[username]</td>";
         echo "<td>$album[name]</td>";
         echo "<td>$album[genre]</td>";
-        echo "<td>$album[artwork]</td>";
         echo "</tr>";
 
         echo "</table>";

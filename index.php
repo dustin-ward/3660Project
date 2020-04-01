@@ -1,3 +1,6 @@
+<?php
+require_once "config.php";
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -10,10 +13,22 @@
     <h2> Links </h2>
     <ul>
       <li><a href="library.php">View the Song Library</a></li>
-      <li><a href="createAlbum.html">Create an Album</a></li>
-      <li><a href="signupArtist.html">Create an Artist Account</a></li>
-      <li><a href="myAccount.php">My Account</a></li>
-      <li><a href="login.html">Artist Login</a></li>
+      <?php
+      if(isset($_SESSION['loggedin'])) {
+        echo "<li><a href='myAccount.php'>My Account</a></li>";
+        if($_SESSION['artist']) {
+          echo "<li><a href='createAlbum.html'>Create an Album</a></li>";
+        }
+        else {
+
+        }
+        echo "<li><a href='logout.php'>Logout</a></li>";
+      }
+      else {
+        echo "<li><a href='login.php'>Login</a></li>";
+        echo "<li><a href='signup.php'>Create an Account</a></li>";
+      }
+      ?>
       <!-- <li><a href="uploadSong.html"> Upload Song </a></li>
       <li><a href="updateSong.php"> Update A Song </a></li>
       <li><a href="deleteSong.php"> Delete Song </a></li>

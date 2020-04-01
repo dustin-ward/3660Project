@@ -1,15 +1,22 @@
 <?php
 require_once "config.php";
-
 if (!isset($_SESSION['loggedin'])) {
-	header('Location: login.html');
+	header('Location: auth/login.php');
 	exit;
 }
 
-$stmt = $conn->prepare('SELECT email, bio, createdAt, profilePic FROM ARTIST WHERE name = ?');
-$stmt->bind_param('s', $_SESSION['name']);
-$stmt->execute();
-$stmt->bind_result($email, $bio, $createdAt, $profilePic);
+if ($_SESSION['artist']) {
+    $stmt = $conn->prepare('SELECT bio, createdAt, profilePic FROM ARTIST WHERE id = ?');
+    $stmt->bind_param('i', $_SESSION['id']);
+    $stmt->execute();
+    $stmt->bind_result($bio, $createdAt, $profilePic);
+}
+else {
+    $stmt = $conn->prepare('SELECT createdAt, profilePic FROM USER WHERE id = ?');
+    $stmt->bind_param('i', $_SESSION['id']);
+    $stmt->execute();
+    $stmt->bind_result($createdAt, $profilePic);
+}
 $stmt->fetch();
 $stmt->close();
 ?>
@@ -20,10 +27,10 @@ $stmt->close();
     </head>
     <body>
         <h1>Account Information</h1>
-        <p><?php $_SESSION['name']?></p>
-        <p><?php $email?></p>
-        <p><?php $bio?></p>
-        <p><?php $createdAt?></p>
-        <?php $profilePic?>
+        <?=$profilePic?>
+        <p><?=$_SESSION['username']?></p>
+        <p><?=$_SESSION['email']?></p>
+        <p>Account Created On: <?=$createdAt?></p>
+        <?php if($_SESSION['artist']) {echo "<p>$bio</p>";} ?>
     </body>
 </html>
