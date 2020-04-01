@@ -1,4 +1,5 @@
 <?php
+session_start();
 // Database connection parameters
 $DB_HOST = 'vconroy.cs.uleth.ca';
 $DB_USER = 'ward3660';

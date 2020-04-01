@@ -1,7 +1,7 @@
 <?php
 require_once "config.php";
 
-$password = hash('sha512',$_POST['password']);
+$password = password_hash($_POST['password'], PASSWORD_BCRYPT);
 
 $sql = "INSERT INTO ARTIST (name, email, password, bio, profilePic) VALUES ('$_POST[name]', '$_POST[email]', '$password', '$_POST[bio]', '$_POST[profilePic]')";
 if($conn->query($sql)) {
