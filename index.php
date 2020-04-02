@@ -17,7 +17,8 @@ require_once "config.php";
       if(isset($_SESSION['loggedin'])) {
         echo "<li><a href='myAccount.php'>My Account</a></li>";
         if($_SESSION['artist']) {
-          echo "<li><a href='createAlbum.html'>Create an Album</a></li>";
+          echo "<li><a href='myMusic.php'>View Your Music</a></li>";
+          echo "<li><a href='createAlbum.html'>Create an Album</a></li>";          
         }
         else {
           echo "<li><a href='userLibrary.php'>View Your Library</a></li>";
