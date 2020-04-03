@@ -1,6 +1,6 @@
 <?php
 require_once "config.php";
-$artist = $conn->query("SELECT * FROM ARTIST WHERE id = $_GET[id]");
+$artist = $conn->query("SELECT * FROM ARTIST WHERE id = $_GET[id]")->fetch_assoc();
 ?>
 
 <!DOCTYPE html>
@@ -30,7 +30,7 @@ $artist = $conn->query("SELECT * FROM ARTIST WHERE id = $_GET[id]");
     <?php
     echo "<h1>$artist[username]'s Music</h1>";
 
-    $libResult = $conn->query("SELECT * FROM LIBRARY WHERE artist = $_SESSION[id]");
+    $libResult = $conn->query("SELECT * FROM LIBRARY WHERE artist = $_GET[id]");
     if($libResult->num_rows > 0) {
         $lib = $libResult->fetch_assoc();
         
@@ -43,8 +43,28 @@ $artist = $conn->query("SELECT * FROM ARTIST WHERE id = $_GET[id]");
         echo "<br><h2>$albumName</h2>";
         echo "<table>";
         echo "<tr>";
+        echo "<th>Play</th>";
+        echo "<th>Title</th>";
+        echo "<th>Length</th>";
+        echo "<th>Plays</th>";
+        if(isset($_SESSION['loggedin']) and !$_SESSION['artist']) {
+          echo "<th>Add/Remove</th>";
+        }
+        echo "</tr>";
+        echo "<tr>";
+        echo "<td><a class='play' href='play.php?id=$song[id]&next=artist&nextID=$_GET[id]'>Play</a></td>";
         echo "<td>$song[name]</td>";
         echo "<td>$song[length]</td>";
+        echo "<td>$song[plays]</td>";
+        if(isset($_SESSION['loggedin']) and !$_SESSION['artist']) {
+          $check = $conn->query("SELECT * FROM USERLIBRARY WHERE user = '$_SESSION[id]' AND song = $song[id]");
+          if($check->num_rows == 0) {
+            echo "<td><a href='addSong.php?id=$song[id]&next=artist&nextID=$artist[id]'>Add Song</a></td>";
+          }
+          else {
+            echo "<td><a href='removeSong.php?id=$song[id]&next=artist&nextID=$artist[id]'>Remove Song</a></td>";
+          }
+        }
         echo "</tr>";
 
         $last;
@@ -57,25 +77,54 @@ $artist = $conn->query("SELECT * FROM ARTIST WHERE id = $_GET[id]");
                 $albumName = $album['name'];
                 echo "</table>";
                 echo "<br>";
-                echo "<a href='deleteAlbum.php?id=$last'>Delete</a><br><br>";
                 echo "<br><h2>$albumName</h2>";
                 echo "<table>";
                 echo "<tr>";
+                echo "<th>Play</th>";
+                echo "<th>Title</th>";
+                echo "<th>Length</th>";
+                echo "<th>Plays</th>";
+                if(isset($_SESSION['loggedin']) and !$_SESSION['artist']) {
+                  echo "<th>Add/Remove</th>";
+                }
+                echo "</tr>";
+                echo "<tr>";
+                echo "<td><a class='play' href='play.php?id=$song[id]&next=artist&nextID=$_GET[id]'>Play</a></td>";
                 echo "<td>$song[name]</td>";
                 echo "<td>$song[length]</td>";
+                echo "<td>$song[plays]</td>";
+                if(isset($_SESSION['loggedin']) and !$_SESSION['artist']) {
+                  $check = $conn->query("SELECT * FROM USERLIBRARY WHERE user = '$_SESSION[id]' AND song = $song[id]");
+                  if($check->num_rows == 0) {
+                    echo "<td><a href='addSong.php?id=$song[id]&next=artist&nextID=$artist[id]'>Add Song</a></td>";
+                  }
+                  else {
+                    echo "<td><a href='removeSong.php?id=$song[id]&next=artist&nextID=$artist[id]'>Remove Song</a></td>";
+                  }
+                }
                 echo "</tr>";
             }
             else {
                 echo "<tr>";
+                echo "<td><a class='play' href='play.php?id=$song[id]&next=artist&nextID=$_GET[id]'>Play</a></td>";
                 echo "<td>$song[name]</td>";
                 echo "<td>$song[length]</td>";
+                echo "<td>$song[plays]</td>";
+                if(isset($_SESSION['loggedin']) and !$_SESSION['artist']) {
+                  $check = $conn->query("SELECT * FROM USERLIBRARY WHERE user = '$_SESSION[id]' AND song = $song[id]");
+                  if($check->num_rows == 0) {
+                    echo "<td><a href='addSong.php?id=$song[id]&next=artist&nextID=$artist[id]'>Add Song</a></td>";
+                  }
+                  else {
+                    echo "<td><a href='removeSong.php?id=$song[id]&next=artist&nextID=$artist[id]'>Remove Song</a></td>";
+                  }
+                }
                 echo "</tr>";
             }
             $last = $lib['album'];
         }
         echo "</table>";
         echo "<br>";
-        echo "<a href='deleteAlbum.php?id=$last'>Delete</a><br><br>";
     }
 
     ?>

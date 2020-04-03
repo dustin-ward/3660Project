@@ -22,5 +22,5 @@ if($check->num_rows > 0) {
     $conn->query("DELETE FROM ALBUM WHERE id = $_GET[id]");
     
 }
-header('Location: userLibrary.php');
+header('Location: myMusic.php');
 ?>

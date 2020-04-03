@@ -27,23 +27,22 @@ require_once "config.php";
     <div class='main'>
       <h1>Welcome To SpotTheFly!</h1>
       <h2> Links </h2>
-      <ul>
-        <li><a href="library.php">View the Global Library</a></li>
+        <a class='button' href="library.php">View the Global Library</a><br><br>
         <?php
         if(isset($_SESSION['loggedin'])) {
-          echo "<li><a href='myAccount.php'>My Account</a></li>";
+          echo "<a class='button' href='myAccount.php'>My Account</a><br><br>";
           if($_SESSION['artist']) {
-            echo "<li><a href='myMusic.php'>View Your Music</a></li>";
-            echo "<li><a href='createAlbum.php'>Create an Album</a></li>";          
+            echo "<a class='button' href='myMusic.php'>View Your Music</a><br><br>";
+            echo "<a class='button' href='createAlbum.php'>Create an Album</a><br><br>";          
           }
           else {
-            echo "<li><a href='userLibrary.php'>View Your Library</a></li>";
+            echo "<a class='button' href='userLibrary.php'>View Your Library</a><br><br>";
           }
-          echo "<li><a href='logout.php'>Logout</a></li>";
+          echo "<a class='button' href='logout.php'>Logout</a><br><br>";
         }
         else {
-          echo "<li><a href='login.php'>Login</a></li>";
-          echo "<li><a href='signup.php'>Create an Account</a></li>";
+          echo "<a class='button' href='login.php'>Login</a><br><br>";
+          echo "<a class='button' href='signup.php'>Create an Account</a><br><br>";
         }
         ?>
         <!-- <li><a href="uploadSong.html"> Upload Song </a></li>

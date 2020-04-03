@@ -7,7 +7,8 @@
   <body>
     <div class='header'>
       		<a href='../index.php' class='logo'>SpotTheFly</a>
-    	</div>
+    </div>
+    <div class='main'>
     <h1> Sign Up as an Artist </h1>
     <form action="signupArtist_Form.php" method="post">
       Email: <input type="text" name="email" size="30" required><br><br>
@@ -17,5 +18,6 @@
       Profile Picture: <input type="file" name="profilePic"><br><br>
       <input type="submit" name="submit" value="Sign Up">
     </form>
+    </div>
   </body>
 </html>

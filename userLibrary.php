@@ -34,11 +34,13 @@ if (!isset($_SESSION['loggedin'])) {
     echo "<h1>$_SESSION[username]'s Library</h1>";
     echo "<table>";
     echo "<tr>";
+    echo "<th>Play</th>";
     echo "<th>Title</th>";
     echo "<th>Album</th>";
     echo "<th>Artist</th>";
     echo "<th>Genre</th>";
     echo "<th>Length</th>";
+    echo "<th>Plays</th>";
     echo "<th>Remove</th>";
     echo "</tr>";
     $libResult = $conn->query("SELECT * FROM LIBRARY WHERE song IN (SELECT song FROM USERLIBRARY WHERE user = $_SESSION[id])");
@@ -52,11 +54,13 @@ if (!isset($_SESSION['loggedin'])) {
         $artist = $artistResult->fetch_assoc();
 
         echo "<tr>";
+        echo "<td><a class='play' href='play.php?id=$song[id]&next=userLibrary'>Play</a></td>";
         echo "<td>$song[name]</td>";
         echo "<td><a class='album' href='album.php?id=$album[id]'>$album[name]</a></td>";
-        echo "<td>$artist[username]</td>";
+        echo "<td><a class='artist' href='artist.php?id=$artist[id]'>$artist[username]</a></td>";
         echo "<td>$album[genre]</td>";
         echo "<td>$song[length]</td>";
+        echo "<td>$song[plays]</td>";
         echo "<td><a href='removeSong.php?id=$lib[song]&next=userLibrary'>Remove Song</a></td>";
         echo "</tr>";
 

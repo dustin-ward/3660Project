@@ -64,7 +64,8 @@ if (!$_SESSION['artist']) {
                 $albumName = $album['name'];
                 echo "</table>";
                 echo "<br>";
-                echo "<a href='deleteAlbum.php?id=$last'>Delete</a><br><br>";
+                echo "<a class='button' href='deleteAlbum.php?id=$last'>Delete</a>";
+                echo "<a class='button' href='editAlbum.php?id=$last'>Edit</a><br><br>";
                 echo "<br><h2>$albumName</h2>";
                 echo "<table>";
                 echo "<tr>";
@@ -82,7 +83,8 @@ if (!$_SESSION['artist']) {
         }
         echo "</table>";
         echo "<br>";
-        echo "<a href='deleteAlbum.php?id=$last'>Delete</a><br><br>";
+        echo "<a class='button' href='deleteAlbum.php?id=$last'>Delete</a>";
+        echo "<a class='button' href='editAlbum.php?id=$last'>Edit</a><br><br>";
     }
 
     ?>

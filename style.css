@@ -47,6 +47,22 @@ div.main {
   padding: 10px;
 }
 
+a.button {
+  color: rgb(255, 255, 255);
+  text-align: center;
+  padding: 5px;
+  margin-right: 5px;
+  text-decoration: none;
+  border-style: solid;
+  border-radius: 6px;
+  border-color: rgb(59, 211, 59);
+}
+
+a.button:hover {
+  color: rgb(255, 255, 255);
+  background-color: rgb(59, 211, 59);
+}
+
 .header {
     overflow: hidden;
     background-color: #070707;

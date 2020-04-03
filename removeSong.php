@@ -9,5 +9,10 @@ $check = $conn->query("SELECT * FROM USERLIBRARY WHERE user = $_SESSION[id] AND 
 if($check->num_rows > 0) {
     $conn->query("DELETE FROM USERLIBRARY WHERE user = $_SESSION[id] AND song = $_GET[id]");
 }
-header("Location: {$_GET[next]}.php");
+if(isset($_GET[nextID])) {
+    header("Location: {$_GET[next]}.php?id={$_GET[nextID]}");
+}
+else {
+    header("Location: {$_GET[next]}.php");
+}
 ?>

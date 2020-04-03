@@ -17,10 +17,8 @@ if (isset($_SESSION['loggedin'])) {
     	</div>
 		<div class='main'>
 		<h1>Create an Account</h1>
-		<ul>
-            <li><a href="auth/signupArtist.php">Artist Account</a></li>
-            <li><a href="auth/signupUser.php">User Account</a></li>
-        </ul>
+            <a class='button' href="auth/signupArtist.php">Artist Account</a>
+            <a class='button' href="auth/signupUser.php">User Account</a>
 		</div>
 	</body>
 </html>
