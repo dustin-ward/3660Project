@@ -8,8 +8,24 @@ if (!isset($_SESSION['loggedin'])) {
 <html>
 <head>
     <title>Add songs to Album</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class='header'>
+      <a href='index.php' class='logo'>SpotTheFly</a>
+      <div class="header-right">
+          <?php
+          if(!isset($_SESSION['loggedin'])) {
+            echo "<a href='signup.php'>Create Account</a>";
+              echo "<a class='active' href='login.php'>Login</a>";
+          }
+          else {
+              echo "<a href='myAccount.php'>Account</a>";
+              echo "<a class='active' href='logout.php'>Logout</a>";
+          }
+          ?>
+      </div>
+    </div>
     <?php
     $name = $_POST['name'];
     echo "<h1>$name</h1>"; 

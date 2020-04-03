@@ -1,31 +1,18 @@
-<?php
-require_once "../config.php";
-
-if ($stmt = $conn->prepare('SELECT id, password, username FROM ARTIST WHERE email = ?')) {
-	$stmt->bind_param('s', $_POST['email']);
-	$stmt->execute();
-    $stmt->store_result();
-    
-    if ($stmt->num_rows > 0) {
-        $stmt->bind_result($id, $password, $username);
-        $stmt->fetch();
-        if (password_verify($_POST['password'], $password)) {
-            session_regenerate_id();
-            $_SESSION['loggedin'] = TRUE;
-            $_SESSION['artist'] = TRUE;
-            $_SESSION['email'] = $_POST['email'];
-            $_SESSION['username'] = $username;
-            $_SESSION['id'] = $id;
-            echo "Welcome $_SESSION[username]! <br><br>";
-            echo "<a href='../index.php'>Return</a> to Home Page.";
-        } else {
-            echo 'Incorrect password!';
-        }
-    } else {
-        echo 'Incorrect username!';
-    }
-
-	$stmt->close();
-}
-
-?>
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Artist Login</title>
+		<link rel="stylesheet" href="../style.css">
+	</head>
+	<body>
+		<div class='header'>
+      		<a href='../index.php' class='logo'>SpotTheFly</a>
+    	</div>
+		<h1>Artist Login</h1>
+		<form action="artistLogin_Form.php" method="post">
+			<input type="text" name="email" placeholder="Artist Email" id="email" required>
+			<input type="password" name="password" placeholder="Password" id="password" required>
+			<input type="submit" value="Login">
+		</form>
+	</body>
+</html>

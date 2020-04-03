@@ -1,16 +1,21 @@
-<?php
-require_once "../config.php";
-
-$password = password_hash($_POST['password'], PASSWORD_BCRYPT);
-
-$sql = "INSERT INTO ARTIST (username, email, password, bio, profilePic) VALUES ('$_POST[username]', '$_POST[email]', '$password', '$_POST[bio]', '$_POST[profilePic]')";
-if($conn->query($sql)) {
-	echo "<h3> Account Created</h3>";
-}
-else {
-    $err = $conn->errno;
-    echo "<p>MySQL error code $err </p>";
-}
-
-echo "<a href=\"../index.php\">Return</a> to Home Page.";
-?>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> Sign Up As An Artist </title>
+    <link rel="stylesheet" href="../style.css">
+  </head>
+  <body>
+    <div class='header'>
+      		<a href='../index.php' class='logo'>SpotTheFly</a>
+    	</div>
+    <h1> Sign Up as an Artist </h1>
+    <form action="signupArtist_Form.php" method="post">
+      Email: <input type="text" name="email" size="30" required><br><br>
+      Password: <input type="password" name="password" size="30" required><br><br>
+      Artist Name: <input type="text" name="username" size="30" required><br><br>
+      Bio: <textarea name="bio" id="bio" cols="30" rows="10"></textarea><br><br>
+      Profile Picture: <input type="file" name="profilePic"><br><br>
+      <input type="submit" name="submit" value="Sign Up">
+    </form>
+  </body>
+</html>

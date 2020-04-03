@@ -9,12 +9,16 @@ if (isset($_SESSION['loggedin'])) {
 <html>
 	<head>
 		<title>Create an Account</title>
+		<link rel="stylesheet" href="style.css">
 	</head>
 	<body>
+		<div class='header'>
+      		<a href='index.php' class='logo'>SpotTheFly</a>
+    	</div>
 		<h1>Create an Account</h1>
 		<ul>
-            <li><a href="auth/signupArtist.html">Artist Account</a></li>
-            <li><a href="auth/signupUser.html">User Account</a></li>
+            <li><a href="auth/signupArtist.php">Artist Account</a></li>
+            <li><a href="auth/signupUser.php">User Account</a></li>
         </ul>
 	</body>
 </html>

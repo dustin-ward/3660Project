@@ -14,9 +14,32 @@ if (!isset($_SESSION['loggedin'])) {
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
+    <div class='header'>
+      <a href='index.php' class='logo'>SpotTheFly</a>
+      <div class="header-right">
+          <?php
+          if(!isset($_SESSION['loggedin'])) {
+            echo "<a href='signup.php'>Create Account</a>";
+              echo "<a class='active' href='login.php'>Login</a>";
+          }
+          else {
+              echo "<a href='myAccount.php'>Account</a>";
+              echo "<a class='active' href='logout.php'>Logout</a>";
+          }
+          ?>
+      </div>
+    </div>
     <?php
     echo "<h1>$_SESSION[username]'s Library</h1>";
-
+    echo "<table>";
+    echo "<tr>";
+    echo "<th>Title</th>";
+    echo "<th>Album</th>";
+    echo "<th>Artist</th>";
+    echo "<th>Genre</th>";
+    echo "<th>Length</th>";
+    echo "<th>Remove</th>";
+    echo "</tr>";
     $libResult = $conn->query("SELECT * FROM LIBRARY WHERE song IN (SELECT song FROM USERLIBRARY WHERE user = $_SESSION[id])");
     if($libResult->num_rows > 0) {
       while($lib = $libResult->fetch_assoc()) {
@@ -26,20 +49,20 @@ if (!isset($_SESSION['loggedin'])) {
         $album = $albumResult->fetch_assoc();
         $artistResult = $conn->query("SELECT * FROM ARTIST WHERE id='$lib[artist]'");
         $artist = $artistResult->fetch_assoc();
-        echo "<table border=1>";
 
         echo "<tr>";
         echo "<td>$song[name]</td>";
-        echo "<td>$song[length]</td>";
-        echo "<td>$artist[username]</td>";
         echo "<td>$album[name]</td>";
+        echo "<td>$artist[username]</td>";
         echo "<td>$album[genre]</td>";
-        echo "<td><a href='removeSong.php?id=$lib[song]'>Remove Song</a></td>";
+        echo "<td>$song[length]</td>";
+        echo "<td><a href='removeSong.php?id=$lib[song]&next=userLibrary'>Remove Song</a></td>";
         echo "</tr>";
 
-        echo "</table>";
-        echo "<br>";
+        
       }
+      echo "</table>";
+      echo "<br>";
     }
 
 
