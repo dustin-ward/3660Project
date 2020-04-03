@@ -1,20 +1,13 @@
 <?php
 require_once "config.php";
-if (!isset($_SESSION['loggedin'])) {
-	header('Location: login.php');
-	exit;
-}
-if (!$_SESSION['artist']) {
-	header('Location: index.php');
-	exit;
-}
+$artist = $conn->query("SELECT * FROM ARTIST WHERE id = $_GET[id]");
 ?>
 
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
-    <title> Your Music </title>
+    <?php echo "<title> $artist[username] </title>"; ?>
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
@@ -35,7 +28,7 @@ if (!$_SESSION['artist']) {
     </div>
     <div class='main'>
     <?php
-    echo "<h1>$_SESSION[username]'s Music</h1>";
+    echo "<h1>$artist[username]'s Music</h1>";
 
     $libResult = $conn->query("SELECT * FROM LIBRARY WHERE artist = $_SESSION[id]");
     if($libResult->num_rows > 0) {

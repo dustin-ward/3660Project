@@ -42,6 +42,7 @@ $stmt->close();
                 ?>
             </div>
         </div>
+        <div class='main'>
         <h1>Account Information</h1>
         <?php 
         echo $profilePic;
@@ -56,5 +57,6 @@ $stmt->close();
         <p><?=$_SESSION['email']?></p>
         <p>Account Created On: <?=$createdAt?></p>
         <?php if($_SESSION['artist']) {echo "<p>$bio</p>";} ?>
+        </div>
     </body>
 </html>

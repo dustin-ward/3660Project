@@ -29,6 +29,7 @@ if (!isset($_SESSION['loggedin'])) {
           ?>
       </div>
     </div>
+    <div class='main'>
     <?php
     echo "<h1>$_SESSION[username]'s Library</h1>";
     echo "<table>";
@@ -52,7 +53,7 @@ if (!isset($_SESSION['loggedin'])) {
 
         echo "<tr>";
         echo "<td>$song[name]</td>";
-        echo "<td>$album[name]</td>";
+        echo "<td><a class='album' href='album.php?id=$album[id]'>$album[name]</a></td>";
         echo "<td>$artist[username]</td>";
         echo "<td>$album[genre]</td>";
         echo "<td>$song[length]</td>";
@@ -68,5 +69,6 @@ if (!isset($_SESSION['loggedin'])) {
 
 
     ?>
+    </div>
   </body>
 </html>

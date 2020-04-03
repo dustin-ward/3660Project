@@ -19,6 +19,7 @@
           ?>
       </div>
     </div>
+    <div class='main'>
     <h2>Album Details</h2>
     <form action="createAlbum2.php" method="post">
         Title: <input type="text" name="name" size="30" required><br><br>
@@ -27,5 +28,6 @@
         # of Songs: <input type="int" name="numSongs" size="30" required><br><br>
         <input type="submit" name="submit" value="Next">
     </form>
+    </div>
 </body>
 </html>

@@ -26,6 +26,7 @@ if (!isset($_SESSION['loggedin'])) {
           ?>
       </div>
     </div>
+    <div class='main'>
     <?php
     $name = $_POST['name'];
     echo "<h1>$name</h1>"; 
@@ -44,5 +45,6 @@ if (!isset($_SESSION['loggedin'])) {
         ?>    
         <input type="submit" name="submit" value="Finish">
     </form>
+    </div>
 </body>
 </html>

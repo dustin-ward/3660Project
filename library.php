@@ -24,6 +24,7 @@ require_once "config.php";
           ?>
       </div>
     </div>
+    <div class='main'>
     <h1> Song List </h1>
     <?php
     echo "<table>";
@@ -51,7 +52,7 @@ require_once "config.php";
         echo "<tr>";
         echo "<td>$song[name]</td>";
         echo "<td><a class='album' href='album.php?id=$album[id]'>$album[name]</a></td>";
-        echo "<td>$artist[username]</td>";
+        echo "<td><a class='artist' href='artist.php?id=$artist[id]'>$artist[username]</a></td>";
         echo "<td>$album[genre]</td>";
         echo "<td>$song[length]</td>";
         if(isset($_SESSION['loggedin']) and !$_SESSION['artist']) {
@@ -73,5 +74,6 @@ require_once "config.php";
 
 
     ?>
+    </div>
   </body>
 </html>

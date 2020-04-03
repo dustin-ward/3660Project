@@ -15,10 +15,12 @@ if (isset($_SESSION['loggedin'])) {
 		<div class='header'>
       		<a href='index.php' class='logo'>SpotTheFly</a>
     	</div>
+		<div class='main'>
 		<h1>Login</h1>
 		<ul>
             <li><a href="auth/artistLogin.php">Artist Login</a></li>
             <li><a href="auth/userLogin.php">User Login</a></li>
         </ul>
+		</div>
 	</body>
 </html>

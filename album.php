@@ -26,6 +26,7 @@ $album = $conn->query("SELECT * FROM ALBUM WHERE id = $_GET[id]")->fetch_assoc()
           ?>
       </div>
     </div>
+    <div class='main'>
     <?php
 
     $libResult = $conn->query("SELECT * FROM LIBRARY WHERE album = $album[id]");
@@ -57,5 +58,6 @@ $album = $conn->query("SELECT * FROM ALBUM WHERE id = $_GET[id]")->fetch_assoc()
         echo "<br>";
     }
     ?>
+    </div>
   </body>
 </html>
