@@ -29,6 +29,7 @@ $artist = $conn->query("SELECT * FROM ARTIST WHERE id = $_GET[id]")->fetch_assoc
     <div class='main'>
     <?php
     echo "<h1>$artist[username]'s Music</h1>";
+    echo "<p>$artist[bio]</p>";
 
     $libResult = $conn->query("SELECT * FROM LIBRARY WHERE artist = $_GET[id]");
     if($libResult->num_rows > 0) {
